@@ -1,0 +1,151 @@
+.math-quiz {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  h1{
+    color: var(--color-danger);
+  }
+  
+  .quemage{
+    display: flex;
+    gap: 4rem;
+  }
+  .image-container{
+    height: 270px;
+    width: 250px;
+
+  }
+
+  
+  .question {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 70%;
+    background-color: #f9f9f9;
+  }
+  
+  .question h2 {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .option {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+    
+  }
+ 
+.options .option::before {
+    content: counter(option-counter, upper-alpha) ". ";
+    counter-increment: option-counter;
+  }
+  
+  .options .option:nth-child(2)::before {
+    content: "B. ";
+  }
+  
+  .options .option:nth-child(3)::before {
+    content: "C. ";
+  }
+  
+  .options .option:nth-child(4)::before {
+    content: "D. ";
+  }
+  
+  
+  .option:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .option.selected {
+    background-color: #cce5ff;
+  }
+  
+  .buttons {
+    margin-top: 20px;
+  }
+  
+  .buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .buttons button:last-child {
+    background-color: #28a745;
+  }
+  
+
+  
+  .score {
+    margin-top: 40px;
+    margin-left: 50%;
+  }
+  
+  .score p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    object-fit: contain;
+    list-style: none;
+    margin-left: 60px;
+    margin-right: 60px;
+    
+  }
+  
+  .pagination a {
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    
+    
+  }
+  
+  
+  .pagination a:hover {
+    background-color: var(--color-white);
+  }
+  
+  .pagination .active a {
+    background-color:var(--color-white);
+    color: var(--light-blue);
+    border: 1px solid rgba(12, 10, 10, 0.753);
+  }
+  

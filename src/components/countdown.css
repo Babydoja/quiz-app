@@ -1,0 +1,30 @@
+#timer {
+  position: fixed;
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    text-align: end;
+    margin: 2rem;
+    left: 85%;
+    top: 3%;
+  }
+  
+  #timer.red {
+    color: blue;
+  }
+
+  .blinking-text {
+    color: blue;
+    color: rgb(255, 0, 0);
+    animation: blinker 1s linear infinite;
+    transition: 0.5s ease-in-out;
+  }
+
+  @keyframes blinker {
+    0%, 50% {
+      opacity: 0;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }

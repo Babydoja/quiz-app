@@ -1,0 +1,25 @@
+.quiz{
+    display: flex;
+    position: relative;
+    gap: 1rem;
+}
+.content {
+    flex: 1;
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+    margin-left: 50px;
+    
+  }
+  .content.sidebar-open {
+    width: 80%;
+  }
+  .start-btn{
+   
+    width: 120px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-left: 80%;
+    cursor: pointer;
+  }
+  

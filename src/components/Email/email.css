@@ -1,0 +1,34 @@
+.e-container{
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    text-align: center;
+    border: 10px solid white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+   
+    width: 350px;
+    border-radius: 5px;
+}
+h3{
+    color:var(--color-danger) ;
+}
+
+button{
+    margin-top: 15px;
+}
+.passmail{
+    display: flex;
+    gap: 1rem;
+}
+.enter-button{
+    height: 40px;
+}
+
+
+input{
+    width: 90%;
+    height: 40px;
+}
