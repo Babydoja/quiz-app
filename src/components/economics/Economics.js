@@ -21,7 +21,7 @@ const economics = () => {
         </ul>
       </li>
       
-      <li>
+      {/* <li>
         <h2>Question Navigation:</h2>
         <ul>
           <li>You can navigate between questions by using the navigation buttons provided.</li>
@@ -46,7 +46,7 @@ const economics = () => {
           <li>Ensure that you have answered all the questions before the exam time expires.</li>
           <li>The system will automatically submit your answers once the time is up.</li>
         </ul>
-      </li> 
+      </li>  */}
     </ol>
 
 <p>Best of luck for your exam!</p>

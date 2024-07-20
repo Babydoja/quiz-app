@@ -5,16 +5,14 @@ import { GrNext, GrPrevious } from 'react-icons/gr';
 import ReactPaginate from 'react-paginate';
 import Countdowntimer from '../Countdowntimer';
 import Calculator from '../calculator/Calculator';
-import Scoreboard from '../Scoreboard/Scoreboard';
 
-const MathQuiz = ({ isQuiz }) => {
+const MathQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
-  const [timeUp, setTimeUp] = useState(false);
-  const [finished, setFinished] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   const mathQuestions = data.mathematics;
 
@@ -42,10 +40,18 @@ const MathQuiz = ({ isQuiz }) => {
       }
       // Mark the current question as answered
       setAnsweredQuestions([...answeredQuestions, currentQuestion]);
+    } else {
+      // If the current question has been answered previously
+      if (isCorrectAnswer) {
+        // If the selected option is the correct answer and it was previously answered wrongly, increment the score
+        setScore((prevScore) => prevScore + 1);
+      } else {
+        // If the selected option is wrong, decrement the score
+        setScore((prevScore) => Math.max(0, prevScore - 1));
+      }
     }
 
     setSelectedOption(option);
-
     setTimeout(() => {
       handleNextQuestion();
     }, 200);
@@ -57,7 +63,6 @@ const MathQuiz = ({ isQuiz }) => {
       setSelectedOption('');
     } else {
       setIsQuizFinished(true);
-      setFinished(true);
     }
   };
 
@@ -68,91 +73,91 @@ const MathQuiz = ({ isQuiz }) => {
     }
   };
 
-  const handleTimeUp = () => {
-    setTimeUp(true);
-  };
-
-  const handleFinishQuiz = () => {
-    setFinished(true);
+  const toggleShowAnswers = () => {
+    setShowAnswers((prevState) => !prevState);
   };
 
   return (
-    <>
-      {isQuiz && (
-        <div className="math-quiz">
-          <div className="timer">
-            <h1>Mathematics</h1>
-            <Countdowntimer handleTimeUp={handleTimeUp} finished={finished} />
+    <div className="math-quiz">
+      <div className="timer">
+        <h1>Mathematics</h1>
+        <Countdowntimer />
+      </div>
+      <Calculator />
+      <div className="quiz-container">
+        {isQuizFinished && !showAnswers ? (
+          <div className="quiz-completion">
+            <h2>Quiz completed</h2>
+            <h2>Your final score: {score} / {mathQuestions.length}</h2>
+            <div className='btnjoin'>
+              <div>
+                <button onClick={() => window.location.reload()} className='btn1'>
+                  Attempt quiz again
+                </button>
+              </div>
+              <div>
+                <button onClick={toggleShowAnswers} className='btn2'>
+                  {showAnswers ? 'Hide Answers' : 'Show Answers'}
+                </button>
+              </div>
+            </div>
           </div>
-
-          {!timeUp && !finished && (
-            <>
-              <div className='quemage'>
-                <div className="question">
-                  <h2>Question {currentQuestion + 1}</h2>
-                  <p>{mathQuestions[currentQuestion].question}</p>
-                  <div className="options">
-                    {mathQuestions[currentQuestion].options.map((option, index) => (
-                      <div
-                        key={index}
-                        className={`option ${selectedOption === option ? 'selected' : ''}`}
-                        onClick={() => handleOptionSelect(option)}
-                      >
-                        {option}
-                      </div>
-                    ))}
+        ) : (
+          !isQuizFinished && (
+            <div className="question">
+              <h2>Question {currentQuestion + 1}</h2>
+              <p>{mathQuestions[currentQuestion].question}</p>
+              <div className="options">
+                {mathQuestions[currentQuestion].options.map((option, index) => (
+                  <div
+                    key={index}
+                    className={`option ${selectedOption === option ? 'selected' : ''}`}
+                    onClick={() => handleOptionSelect(option)}
+                  >
+                    {option}
                   </div>
-                  <div className="buttons">
-                    <button onClick={handlePreviousQuestion} disabled={currentQuestion === 0}>
-                      Previous
-                    </button>
-                    <button onClick={handleNextQuestion}>
-                      {currentQuestion === mathQuestions.length - 1 ? 'Finish' : 'Next'}
-                    </button>
-                  </div>
-                </div>
-                <Calculator />
-                <div className='image-container'></div>
+                ))}
               </div>
-
-              <div className="score">
-                <p>Score: {score}</p>
+              <div className="buttons">
+                <button onClick={handlePreviousQuestion} disabled={currentQuestion === 0}>
+                  Previous
+                </button>
+                <button onClick={handleNextQuestion}>
+                  {currentQuestion === mathQuestions.length - 1 ? 'Finish' : 'Next'}
+                </button>
               </div>
-
-              <ReactPaginate
-                breakLabel="..."
-                nextLabel={<GrNext size={25} />}
-                previousLabel={<GrPrevious size={25} />}
-                pageCount={mathQuestions.length}
-                pageRangeDisplayed={5}
-                marginPagesDisplayed={1}
-                onPageChange={(selected) => setCurrentQuestion(selected.selected)}
-                forcePage={currentQuestion}
-                renderOnZeroPageCount={null}
-                containerClassName={'pagination'}
-                activeClassName={'active'}
-              />
-            </>
-          )}
-
-          {(timeUp || finished) && <Scoreboard score={score} totalQuestion={mathQuestions.length} />}
-        </div>
-      )}
-
-      {!isQuiz && (
-        <div className="answer-page">
-          <h1>Answer Page</h1>
+            </div>
+          )
+        )}
+      </div>
+      <div className="score">
+        {/* <p>Score: {score}</p> */}
+      </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel={<GrNext size={25} />}
+        previousLabel={<GrPrevious size={25} />}
+        pageCount={mathQuestions.length}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={1}
+        onPageChange={(selected) => setCurrentQuestion(selected.selected)}
+        forcePage={currentQuestion}
+        renderOnZeroPageCount={null}
+        containerClassName={'pagination'}
+        activeClassName={'active'}
+      />
+      {showAnswers && (
+        <div className="answers-section">
+          <h2>Correct Answers</h2>
           {mathQuestions.map((question, index) => (
-            <div key={index}>
-              <p>Question {index + 1}</p>
-              <p>Question: {question.question}</p>
-              <p>Selected Option: {selectedOption}</p>
-              <p>Correct Answer: {question.answer}</p>
+            <div key={index} className="answer">
+              <p><strong>Question {index + 1}:</strong> {question.question}</p>
+              <p><strong>Answer:</strong> {question.answer}</p>
             </div>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

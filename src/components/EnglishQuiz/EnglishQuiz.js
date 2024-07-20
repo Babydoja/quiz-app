@@ -73,23 +73,33 @@ const EnglishQuiz = () => {
     setShowAnswers((prevState) => !prevState);
   };
 
+  const handleTimeUp = () => {
+    setIsQuizFinished(true);
+  };
+
   return (
     <div className="english-quiz">
       <div className='timer'>
         <h1>Current Affairs</h1>
-        <Countdowntimer isQuizFinished={isQuizFinished} />
+        <Countdowntimer isQuizFinished={isQuizFinished} handleTimeUp={handleTimeUp} />
       </div>
       <div className='quemage'>
         {isQuizFinished ? (
           <div className="quiz-completion">
             <h2>Quiz Completed!</h2>
             <p>Score is: {score}/{englishQuestions.length}</p>
-            <button onClick={() => window.location.reload()}>
-              Attempt quiz again
-            </button>
-            <button onClick={toggleShowAnswers}>
-              {showAnswers ? 'Hide Answers' : 'Show Answers'}
-            </button>
+            <div className='btnjoin'>
+              <div>
+                <button onClick={() => window.location.reload()} className='btn1'>
+                  Attempt quiz again
+                </button>
+              </div>
+              <div>
+                <button onClick={toggleShowAnswers} className='btn2'>
+                  {showAnswers ? 'Hide Answers' : 'Show Answers'}
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="question">
@@ -121,9 +131,9 @@ const EnglishQuiz = () => {
         )}
         <div className='image-container'></div>
       </div>
-      {!isQuizFinished && (
+      {!isQuizFinished && !showAnswers && (
         <div className="score">
-          <p>Score: {score}</p>
+          {/* <p>Score: {score}</p> */}
         </div>
       )}
       {!isQuizFinished && (
@@ -155,5 +165,4 @@ const EnglishQuiz = () => {
     </div>
   );
 };
-
 export default EnglishQuiz;

@@ -1,6 +1,7 @@
 import React from 'react'
 import './english.css'
 import { Link } from 'react-router-dom';
+// import logo from '../../../public/parach.png'
 
 const English = () => {
     const startQuiz = () => {
@@ -11,6 +12,7 @@ const English = () => {
       return (
         <div className="instructions-container" style={{ maxHeight: "100vh", overflowY: "auto" }}>
            <h1>INSTRUCTIONS FOR CBT EXAMINATION</h1>
+           {/* <img src='https://parachictacademy.com.ng/wp-content/uploads/2019/08/Parach-computers-ibadan-logo-1-e1565984209812.png'/> */}
     
            <ol> 
       <li>
@@ -22,7 +24,7 @@ const English = () => {
         </ul>
       </li>
       
-      <li>
+      {/* <li>
         <h2>Question Navigation:</h2>
         <ul>
           <li>You can navigate between questions by using the navigation buttons provided.</li>
@@ -38,7 +40,7 @@ const English = () => {
           <li>There are no negative marks for incorrect answers or unanswered questions.</li>
           <li>Make sure to attempt all questions as there is no penalty for guessing.</li>
         </ul>
-      </li>
+      </li> */}
       
       {/* <li>
         <h2>Submitting Answers:</h2>

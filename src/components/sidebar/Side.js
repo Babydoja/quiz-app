@@ -46,12 +46,29 @@ const Sidebar = () => {
               </NavLink>  
                 </li>
               
-              <NavLink to='/English' id='Link' >
-                <li id='directory' className={isPathActive('/English') ? 'active' : ''}>
+              <NavLink to='/CA' id='Link' >
+                <li id='directory' className={isPathActive('/CA') ? 'active' : ''}>
                   
-                  <p>Use Of English</p>
+                  <p>Current Affairs</p>
                 </li>
               </NavLink>
+              <NavLink to='/Crs' id='Link' >
+                <li id='directory' className={isPathActive('/Crs') ? 'active' : ''}>
+                 
+                  <p>English</p>
+                </li>
+              </NavLink>
+              <NavLink to='/Economics' id='Link'>
+                <li id='directory' className={isPathActive('/Economics') ? 'active' : ''}>
+                  <p>Teaching profession</p>
+                </li>
+              </NavLink>
+              {/* <NavLink to='/Biology' id='Link'>
+                <li id='directory' className={isPathActive('/Biology') ? 'active' : ''}>
+                
+                  <p>Biology</p>
+                </li>
+              </NavLink> */}
               {/* <NavLink to='/Physics' id='Link' >
                 <li id='directory' className={isPathActive('/Physics') ? 'active' : ''}>
                   
@@ -64,24 +81,8 @@ const Sidebar = () => {
                   <p>Chemistry</p>
                 </li>
               </NavLink>
-              <NavLink to='/Biology' id='Link'>
-                <li id='directory' className={isPathActive('/Biology') ? 'active' : ''}>
-                
-                  <p>Biology</p>
-                </li>
-              </NavLink>
-              <NavLink to='/Crs' id='Link' >
-                <li id='directory' className={isPathActive('/Crs') ? 'active' : ''}>
-                 
-                  <p>CRS</p>
-                </li>
-              </NavLink>
-              <NavLink to='/Economics' id='Link'>
-                <li id='directory' className={isPathActive('/Economics') ? 'active' : ''}>
-                  
-                  <p>Economics</p>
-                </li>
-              </NavLink>
+              
+             
               <NavLink to='/Commerce' id='Link' >
                 <li id='directory' className={isPathActive('/Commerce') ? 'active' : ''}>
                   

@@ -148,4 +148,8 @@
     color: var(--light-blue);
     border: 1px solid rgba(12, 10, 10, 0.753);
   }
-  
+
+.btn1{
+  background-color: #007bff;
+  color: #fff;
+}
